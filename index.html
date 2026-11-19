@@ -6,6 +6,14 @@
   <meta name="theme-color" content="#ffffff">
   <title>CarnaTiller 2027 · Catálogo de Modelos</title>
   <meta name="description" content="Explore o catálogo infinito de modelos CarnaTiller 2027 e envie sua escolha direto no WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CarnaTiller 2027 · Tiller Confecções">
+  <meta property="og:title" content="CarnaTiller 2027 · Catálogo de Modelos">
+  <meta property="og:description" content="Role os modelos prontos CarnaTiller 2027 e envie sua escolha direto no WhatsApp.">
+  <meta property="og:url" content="https://tillerconfeccoes.github.io/tillercatalogo2027/">
+  <meta property="og:image" content="https://tillerconfeccoes.github.io/tillercatalogo2027/imagens/categoria-1/modelo-002.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -850,6 +858,45 @@
       flex-shrink: 0;
     }
 
+    .photo-share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 42px;
+      min-width: 40px;
+      padding: 0 11px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.2s var(--ease-spring), background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .photo-share-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .photo-share-btn:active { transform: scale(0.94); }
+    .photo-share-btn:disabled { opacity: 0.45; cursor: wait; }
+    .photo-share-btn .photo-label { display: none; }
+
+    @media (min-width: 460px) {
+      .photo-share-btn .photo-label { display: inline; }
+    }
+
+    .lightbox-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
     .wa-send-btn {
       display: inline-flex;
       align-items: center;
@@ -874,10 +921,13 @@
     .wa-send-btn .label-short { display: none; }
 
     @media (max-width: 430px) {
-      .dock-thumb { width: 40px; height: 40px; }
-      .wa-send-btn { padding: 0 13px; }
+      .dock-inner { gap: 7px; padding: 8px 8px 8px 9px; }
+      .dock-thumb { width: 38px; height: 38px; border-radius: 11px; }
+      .photo-share-btn { min-width: 38px; padding: 0 9px; height: 40px; }
+      .wa-send-btn { padding: 0 12px; height: 40px; font-size: 12px; }
       .wa-send-btn .label-full { display: none; }
       .wa-send-btn .label-short { display: inline; }
+      .dock-clear { width: 30px; height: 30px; }
     }
 
     .dock-clear {
@@ -1173,6 +1223,14 @@
       </div>
 
       <div class="dock-actions">
+        <button type="button" class="photo-share-btn" id="dockSharePhotoBtn" aria-label="Enviar arquivo da foto do modelo" title="Compartilhar arquivo da foto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="3" ry="3"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          <span class="photo-label">Foto</span>
+        </button>
         <button type="button" class="wa-send-btn" id="dockSendBtn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .14 5.35.14 11.92c0 2.1.55 4.15 1.59 5.96L0 24l6.29-1.65a11.87 11.87 0 0 0 5.77 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.17-3.47-8.42Zm-8.46 18.32h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.22-3.73.98.99-3.64-.24-.37a9.86 9.86 0 0 1-1.52-5.25c0-5.46 4.44-9.9 9.91-9.9 2.65 0 5.14 1.03 7.01 2.9a9.84 9.84 0 0 1 2.9 7.01c0 5.46-4.45 9.87-9.9 9.87Zm5.43-7.41c-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35Z"/>
@@ -1198,10 +1256,20 @@
           <strong id="lightboxTitle">Modelo 001</strong>
           <span id="lightboxCategory">Coleção Neon</span>
         </div>
-        <button type="button" class="wa-send-btn" id="lightboxSendBtn">
-          <span class="label-full">Enviar no WhatsApp ↗</span>
-          <span class="label-short">WhatsApp ↗</span>
-        </button>
+        <div class="lightbox-actions">
+          <button type="button" class="photo-share-btn" id="lightboxSharePhotoBtn" aria-label="Enviar arquivo da foto" title="Enviar arquivo da foto">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="3" ry="3"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            <span class="photo-label">Foto</span>
+          </button>
+          <button type="button" class="wa-send-btn" id="lightboxSendBtn">
+            <span class="label-full">WhatsApp ↗</span>
+            <span class="label-short">WhatsApp ↗</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1212,6 +1280,7 @@
   <script>
     // ===== Configuração =====
     const WHATSAPP = "558421338804";
+    const PUBLIC_BASE_URL = "https://tillerconfeccoes.github.io/tillercatalogo2027";
     const TOTAL_MODELS = 200;
     const CLONE_COUNT = 3;
 
@@ -1249,6 +1318,7 @@
     const dockThumbFallback = document.getElementById("dockThumbFallback");
     const dockSub = document.getElementById("dockSub");
     const dockTitle = document.getElementById("dockTitle");
+    const dockSharePhotoBtn = document.getElementById("dockSharePhotoBtn");
     const dockSendBtn = document.getElementById("dockSendBtn");
     const dockClearBtn = document.getElementById("dockClearBtn");
 
@@ -1258,6 +1328,7 @@
     const lightboxImg = document.getElementById("lightboxImg");
     const lightboxTitle = document.getElementById("lightboxTitle");
     const lightboxCategory = document.getElementById("lightboxCategory");
+    const lightboxSharePhotoBtn = document.getElementById("lightboxSharePhotoBtn");
     const lightboxSendBtn = document.getElementById("lightboxSendBtn");
     const toast = document.getElementById("toast");
 
@@ -1320,17 +1391,28 @@
       toastTimer = setTimeout(() => toast.classList.remove("show"), 2000);
     }
 
-    // ===== Retomar conversa no WhatsApp com o modelo escolhido =====
+    function getPublicBase() {
+      if (/^https:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1)$/i.test(location.hostname)) {
+        const dir = location.pathname.replace(/\/[^/]*$/, "");
+        return `${location.origin}${dir}`;
+      }
+      return PUBLIC_BASE_URL;
+    }
+
+    function previewPageUrl(n) {
+      return `${getPublicBase()}/m/${pad3(n)}.html`;
+    }
+
+    // ===== Retomar conversa no WhatsApp (com prévia visual automática og:image) =====
     function sendChoiceToWhatsApp(n) {
       n = clampModel(n);
       const cat = categoryOf(n);
       const lines = [
-        `Oi! Escolhi o *${modelName(n)}* (${cat ? cat.name : ""}) no catálogo CarnaTiller 2027.`
+        `Oi! Escolhi o *${modelName(n)}* (${cat ? cat.name : ""}) no catálogo CarnaTiller 2027.`,
+        previewPageUrl(n),
+        "",
+        "Podemos seguir com esse modelo!"
       ];
-      if (isPublished()) {
-        lines.push(`Link do modelo: ${modelUrl(n)}`);
-      }
-      lines.push("Podemos seguir com esse modelo!");
 
       const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(lines.join("\n"))}`;
       const win = window.open(waUrl, "_blank");
@@ -1338,6 +1420,53 @@
         win.opener = null;
       } else {
         location.href = waUrl;
+      }
+    }
+
+    // ===== Enviar arquivo real da foto (Web Share API no celular / download no computador) =====
+    async function shareModelImage(n, triggerBtn = null) {
+      n = clampModel(n);
+      if (missingImages.has(n)) {
+        notify(`Foto do ${modelName(n)} ainda não disponível.`);
+        return;
+      }
+      const cat = categoryOf(n);
+      if (!cat) return;
+
+      if (triggerBtn) triggerBtn.disabled = true;
+      try {
+        const resp = await fetch(imagePath(cat, n));
+        if (!resp.ok) throw new Error("Imagem indisponível");
+        const blob = await resp.blob();
+        const ext = blob.type === "image/png" ? "png" : "jpg";
+        const filename = `CarnaTiller-2027-Modelo-${pad3(n)}.${ext}`;
+        const file = new File([blob], filename, { type: blob.type || "image/jpeg" });
+        const caption = `Oi! Escolhi o ${modelName(n)} (${cat.name}) no catálogo CarnaTiller 2027.`;
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: `${modelName(n)} · CarnaTiller 2027`,
+            text: caption
+          });
+          return;
+        }
+
+        // Fallback para desktop ou navegadores sem compartilhamento de arquivo
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 2000);
+        notify("Foto baixada! Agora é só anexar no WhatsApp.");
+      } catch (err) {
+        if (err && err.name === "AbortError") return;
+        notify("Não foi possível preparar a foto deste modelo.");
+      } finally {
+        if (triggerBtn) triggerBtn.disabled = false;
       }
     }
 
@@ -1782,6 +1911,10 @@
     lightboxClose.addEventListener("click", closeLightbox);
     lightboxBackdrop.addEventListener("click", closeLightbox);
 
+    lightboxSharePhotoBtn.addEventListener("click", () => {
+      if (lightboxModel) shareModelImage(lightboxModel, lightboxSharePhotoBtn);
+    });
+
     lightboxSendBtn.addEventListener("click", () => {
       if (!lightboxModel) return;
       const num = lightboxModel;
@@ -1833,6 +1966,10 @@
       goToModel(1, true);
     });
 
+    dockSharePhotoBtn.addEventListener("click", () => {
+      if (selectedModel !== null) shareModelImage(selectedModel, dockSharePhotoBtn);
+    });
+
     dockSendBtn.addEventListener("click", () => {
       if (selectedModel !== null) sendChoiceToWhatsApp(selectedModel);
     });
@@ -1849,7 +1986,7 @@
         if (e.key === "Escape") {
           closeLightbox();
         } else if (e.key === "Tab") {
-          const focusables = [lightboxClose, lightboxSendBtn];
+          const focusables = [lightboxClose, lightboxSharePhotoBtn, lightboxSendBtn];
           const idx = focusables.indexOf(document.activeElement);
           e.preventDefault();
           focusables[(idx + (e.shiftKey ? -1 : 1) + focusables.length) % focusables.length].focus();
