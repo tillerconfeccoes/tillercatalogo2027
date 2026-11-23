@@ -1174,10 +1174,10 @@
 
         <!-- Categorias (sincronizadas com a rolagem infinita) -->
         <nav class="category-tabs" id="categoryTabs" role="tablist" aria-label="Coleções de modelos">
-          <button class="cat-tab active" type="button" role="tab" aria-selected="true" data-category="1">01 · Neon <span>1–40</span></button>
-          <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="2">02 · Abstrato <span>51–100</span></button>
-          <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="3">03 · Tropical <span>101–150</span></button>
-          <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="4">04 · Minimal <span>151–193</span></button>
+          <button class="cat-tab active" type="button" role="tab" aria-selected="true" data-category="1">01 · Ondas & Neon <span>1–40</span></button>
+          <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="2">02 · Tropical <span>51–100</span></button>
+          <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="3">03 · Verão & Brasil <span>101–150</span></button>
+          <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="4">04 · Street & Pop <span>151–193</span></button>
         </nav>
       </div>
 
@@ -1217,7 +1217,7 @@
           <img id="dockThumbImg" alt="">
         </div>
         <div class="dock-info">
-          <small id="dockSub">Coleção Neon</small>
+          <small id="dockSub">Coleção Ondas & Neon</small>
           <strong id="dockTitle">Modelo 001</strong>
         </div>
       </div>
@@ -1254,7 +1254,7 @@
       <div class="lightbox-bar">
         <div class="lightbox-meta">
           <strong id="lightboxTitle">Modelo 001</strong>
-          <span id="lightboxCategory">Coleção Neon</span>
+          <span id="lightboxCategory">Coleção Ondas & Neon</span>
         </div>
         <div class="lightbox-actions">
           <button type="button" class="photo-share-btn" id="lightboxSharePhotoBtn" aria-label="Enviar arquivo da foto" title="Enviar arquivo da foto">
@@ -1284,10 +1284,10 @@
     const CLONE_COUNT = 3;
 
     const CATEGORIES = [
-      { id: 1, name: "Neon",     start: 1,   end: 40,  folder: "categoria-1", dot: "#39ff14", bgA: "rgba(57,255,20,0.22)",  bgB: "rgba(255,20,147,0.14)" },
-      { id: 2, name: "Abstrato", start: 51,  end: 100, folder: "categoria-2", dot: "#ff1493", bgA: "rgba(255,20,147,0.18)", bgB: "rgba(217,182,93,0.20)" },
-      { id: 3, name: "Tropical", start: 101, end: 150, folder: "categoria-3", dot: "#d9b65d", bgA: "rgba(217,182,93,0.24)", bgB: "rgba(57,255,20,0.16)"  },
-      { id: 4, name: "Minimal",  start: 151, end: 193, folder: "categoria-4", dot: "#111111", bgA: "rgba(17,17,17,0.08)",   bgB: "rgba(217,182,93,0.14)" }
+      { id: 1, name: "Ondas & Neon",   start: 1,   end: 40,  folder: "categoria-1", dot: "#39ff14", bgA: "rgba(57,255,20,0.22)",  bgB: "rgba(255,20,147,0.14)" },
+      { id: 2, name: "Tropical",       start: 51,  end: 100, folder: "categoria-2", dot: "#ff1493", bgA: "rgba(255,20,147,0.18)", bgB: "rgba(217,182,93,0.20)" },
+      { id: 3, name: "Verão & Brasil", start: 101, end: 150, folder: "categoria-3", dot: "#d9b65d", bgA: "rgba(217,182,93,0.24)", bgB: "rgba(57,255,20,0.16)"  },
+      { id: 4, name: "Street & Pop",   start: 151, end: 193, folder: "categoria-4", dot: "#111111", bgA: "rgba(17,17,17,0.08)",   bgB: "rgba(217,182,93,0.14)" }
     ];
 
     const AVAILABLE_MODELS = CATEGORIES.flatMap(c =>
@@ -1611,7 +1611,8 @@
         tab.classList.toggle("active", active);
         tab.setAttribute("aria-selected", active ? "true" : "false");
         if (active && categoryTabs.scrollWidth > categoryTabs.clientWidth) {
-          tab.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", inline: "center", block: "nearest" });
+          const left = tab.offsetLeft - (categoryTabs.clientWidth - tab.offsetWidth) / 2;
+          categoryTabs.scrollTo({ left: Math.max(0, left), behavior: prefersReducedMotion ? "auto" : "smooth" });
         }
       });
     }
