@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ffffff">
   <title>CarnaTiller 2027 · Catálogo de Modelos</title>
-  <meta name="description" content="Explore o catálogo infinito de modelos CarnaTiller 2027 e envie sua escolha direto no WhatsApp.">
+  <meta name="description" content="Explore mais de 180 modelos prontos CarnaTiller 2027 e envie sua escolha direto no WhatsApp.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CarnaTiller 2027 · Tiller Confecções">
   <meta property="og:title" content="CarnaTiller 2027 · Catálogo de Modelos">
-  <meta property="og:description" content="Role os modelos prontos CarnaTiller 2027 e envie sua escolha direto no WhatsApp.">
+  <meta property="og:description" content="Explore mais de 180 modelos prontos CarnaTiller 2027 e envie sua escolha direto no WhatsApp.">
   <meta property="og:url" content="https://tillerconfeccoes.github.io/tillercatalogo2027/">
   <meta property="og:image" content="https://tillerconfeccoes.github.io/tillercatalogo2027/imagens/categoria-1/modelo-002.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -1138,7 +1138,7 @@
           <div class="topbar-tools">
             <div class="position-pill" id="positionPill" aria-live="polite" title="Modelo atual">
               <span class="dot" id="positionDot"></span>
-              <span id="positionText">001 / 200</span>
+              <span id="positionText">Nº 001</span>
             </div>
 
             <button type="button" class="icon-btn fav-toggle" id="favToggle" aria-label="Ver modelos salvos" aria-expanded="false" title="Modelos salvos">
@@ -1159,7 +1159,7 @@
         <div class="header-drawer" id="jumpDrawer">
           <div class="header-drawer-inner">
             <form class="jump-form" id="jumpForm" autocomplete="off">
-              <input type="number" id="jumpInput" class="jump-input" min="1" max="200" inputmode="numeric" placeholder="Digite o nº do modelo (1 a 200)">
+              <input type="number" id="jumpInput" class="jump-input" min="1" max="193" inputmode="numeric" placeholder="Nº do modelo (1–40 ou 51–193)">
               <button type="submit" class="jump-submit">Ir</button>
             </form>
           </div>
@@ -1174,10 +1174,10 @@
 
         <!-- Categorias (sincronizadas com a rolagem infinita) -->
         <nav class="category-tabs" id="categoryTabs" role="tablist" aria-label="Coleções de modelos">
-          <button class="cat-tab active" type="button" role="tab" aria-selected="true" data-category="1">01 · Neon <span>1–50</span></button>
+          <button class="cat-tab active" type="button" role="tab" aria-selected="true" data-category="1">01 · Neon <span>1–40</span></button>
           <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="2">02 · Abstrato <span>51–100</span></button>
           <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="3">03 · Tropical <span>101–150</span></button>
-          <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="4">04 · Minimal <span>151–200</span></button>
+          <button class="cat-tab" type="button" role="tab" aria-selected="false" data-category="4">04 · Minimal <span>151–193</span></button>
         </nav>
       </div>
 
@@ -1190,7 +1190,7 @@
     <main class="reel-shell">
       <div class="reel-track" id="reelTrack" role="region" aria-label="Catálogo vertical infinito de modelos" tabindex="0"></div>
 
-      <!-- Setas verticais em circuito fechado (001 ↑ vai para 200; 200 ↓ vai para 001) -->
+      <!-- Setas verticais em circuito fechado (001 ↑ vai para 193; 193 ↓ vai para 001) -->
       <div class="reel-nav" aria-label="Navegação de modelos">
         <button type="button" class="reel-nav-btn" id="prevModel" aria-label="Modelo anterior" title="Modelo anterior (↑)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1281,15 +1281,22 @@
     // ===== Configuração =====
     const WHATSAPP = "558421338804";
     const PUBLIC_BASE_URL = "https://tillerconfeccoes.github.io/tillercatalogo2027";
-    const TOTAL_MODELS = 200;
     const CLONE_COUNT = 3;
 
     const CATEGORIES = [
-      { id: 1, name: "Neon",     start: 1,   end: 50,  folder: "categoria-1", dot: "#39ff14", bgA: "rgba(57,255,20,0.22)",  bgB: "rgba(255,20,147,0.14)" },
+      { id: 1, name: "Neon",     start: 1,   end: 40,  folder: "categoria-1", dot: "#39ff14", bgA: "rgba(57,255,20,0.22)",  bgB: "rgba(255,20,147,0.14)" },
       { id: 2, name: "Abstrato", start: 51,  end: 100, folder: "categoria-2", dot: "#ff1493", bgA: "rgba(255,20,147,0.18)", bgB: "rgba(217,182,93,0.20)" },
       { id: 3, name: "Tropical", start: 101, end: 150, folder: "categoria-3", dot: "#d9b65d", bgA: "rgba(217,182,93,0.24)", bgB: "rgba(57,255,20,0.16)"  },
-      { id: 4, name: "Minimal",  start: 151, end: 200, folder: "categoria-4", dot: "#111111", bgA: "rgba(17,17,17,0.08)",   bgB: "rgba(217,182,93,0.14)" }
+      { id: 4, name: "Minimal",  start: 151, end: 193, folder: "categoria-4", dot: "#111111", bgA: "rgba(17,17,17,0.08)",   bgB: "rgba(217,182,93,0.14)" }
     ];
+
+    const AVAILABLE_MODELS = CATEGORIES.flatMap(c =>
+      Array.from({ length: c.end - c.start + 1 }, (_, i) => c.start + i)
+    );
+    const TOTAL_MODELS = AVAILABLE_MODELS.length;
+    const FIRST_MODEL = AVAILABLE_MODELS[0];
+    const LAST_MODEL = AVAILABLE_MODELS[TOTAL_MODELS - 1];
+    const MODEL_INDEX = new Map(AVAILABLE_MODELS.map((n, i) => [n, i]));
 
     // ===== DOM =====
     const reel = document.getElementById("reelTrack");
@@ -1355,7 +1362,17 @@
     const pad3 = n => String(n).padStart(3, "0");
     const modelName = n => `Modelo ${pad3(n)}`;
     const categoryOf = n => CATEGORIES.find(c => n >= c.start && n <= c.end);
-    const clampModel = n => Math.max(1, Math.min(TOTAL_MODELS, Math.round(n)));
+    function clampModel(n) {
+      const target = Math.round(Number(n));
+      if (!Number.isFinite(target)) return FIRST_MODEL;
+      if (MODEL_INDEX.has(target)) return target;
+      let best = FIRST_MODEL, bestDist = Infinity;
+      for (const m of AVAILABLE_MODELS) {
+        const d = Math.abs(m - target);
+        if (d < bestDist) { bestDist = d; best = m; }
+      }
+      return best;
+    }
     const isPublished = () => /^https?:$/.test(location.protocol);
     const getRealCard = n => reel.querySelector(`.model-card[data-number="${n}"]:not([data-clone])`);
 
@@ -1370,7 +1387,7 @@
     function loadFavorites() {
       try {
         const raw = JSON.parse(localStorage.getItem("ct2027_favs") || "[]");
-        return Array.isArray(raw) ? raw.filter(n => Number.isInteger(n) && n >= 1 && n <= TOTAL_MODELS) : [];
+        return Array.isArray(raw) ? raw.filter(n => Number.isInteger(n) && MODEL_INDEX.has(n)) : [];
       } catch (_) {
         return [];
       }
@@ -1546,22 +1563,20 @@
     function renderInfiniteReel() {
       const frag = document.createDocumentFragment();
 
-      // Clones do fim (198, 199, 200) acima do 001 -> permite rolar para CIMA até o 200
-      for (let n = TOTAL_MODELS - CLONE_COUNT + 1; n <= TOTAL_MODELS; n++) {
+      // Clones do fim (191, 192, 193) acima do 001 -> permite rolar para CIMA até o último modelo
+      AVAILABLE_MODELS.slice(-CLONE_COUNT).forEach(n => {
         frag.appendChild(createCardElement(categoryOf(n), n, "head"));
-      }
-
-      // 200 modelos reais
-      CATEGORIES.forEach(cat => {
-        for (let n = cat.start; n <= cat.end; n++) {
-          frag.appendChild(createCardElement(cat, n));
-        }
       });
 
-      // Clones do início (001, 002, 003) abaixo do 200 -> permite rolar para BAIXO até o 001
-      for (let n = 1; n <= CLONE_COUNT; n++) {
+      // Modelos reais disponíveis (183 modelos)
+      AVAILABLE_MODELS.forEach(n => {
+        frag.appendChild(createCardElement(categoryOf(n), n));
+      });
+
+      // Clones do início (001, 002, 003) abaixo do último -> permite rolar para BAIXO até o 001
+      AVAILABLE_MODELS.slice(0, CLONE_COUNT).forEach(n => {
         frag.appendChild(createCardElement(categoryOf(n), n, "tail"));
-      }
+      });
 
       reel.appendChild(frag);
     }
@@ -1578,12 +1593,14 @@
 
     function updateHeaderIndicators(n) {
       const cat = categoryOf(n);
-      positionText.textContent = `${pad3(n)} / ${TOTAL_MODELS}`;
+      const pos = (MODEL_INDEX.get(n) ?? 0) + 1;
+      positionText.textContent = `Nº ${pad3(n)}`;
+      document.getElementById("positionPill").title = `Modelo ${pad3(n)} (${pos} de ${TOTAL_MODELS})`;
       if (cat) {
         positionDot.style.background = cat.dot;
         updateActiveTab(cat.id);
       }
-      loopProgressFill.style.transform = `scaleX(${n / TOTAL_MODELS})`;
+      loopProgressFill.style.transform = `scaleX(${pos / TOTAL_MODELS})`;
     }
 
     function updateActiveTab(categoryId) {
@@ -1702,24 +1719,26 @@
       }, { passive: true });
     }
 
-    // Navegação passo a passo em circuito fechado (↑ e ↓)
+    // Navegação passo a passo em circuito fechado (↑ e ↓, pulando lacunas)
     function stepPrev() {
       scrollHint.classList.add("is-hidden");
-      if (activeNumber <= 1) {
-        const clone200 = reel.querySelector('.model-card[data-clone="head"][data-number="200"]');
-        scrollToCardEl(clone200, TOTAL_MODELS, true);
+      const idx = MODEL_INDEX.get(activeNumber) ?? 0;
+      if (idx <= 0) {
+        const cloneLast = reel.querySelector(`.model-card[data-clone="head"][data-number="${LAST_MODEL}"]`);
+        scrollToCardEl(cloneLast, LAST_MODEL, true);
       } else {
-        goToModel(activeNumber - 1, true);
+        goToModel(AVAILABLE_MODELS[idx - 1], true);
       }
     }
 
     function stepNext() {
       scrollHint.classList.add("is-hidden");
-      if (activeNumber >= TOTAL_MODELS) {
-        const clone1 = reel.querySelector('.model-card[data-clone="tail"][data-number="1"]');
-        scrollToCardEl(clone1, 1, true);
+      const idx = MODEL_INDEX.get(activeNumber) ?? 0;
+      if (idx >= TOTAL_MODELS - 1) {
+        const cloneFirst = reel.querySelector(`.model-card[data-clone="tail"][data-number="${FIRST_MODEL}"]`);
+        scrollToCardEl(cloneFirst, FIRST_MODEL, true);
       } else {
-        goToModel(activeNumber + 1, true);
+        goToModel(AVAILABLE_MODELS[idx + 1], true);
       }
     }
 
@@ -1850,9 +1869,9 @@
 
     jumpForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const val = Number(jumpInput.value);
-      if (!Number.isFinite(val) || val < 1 || val > TOTAL_MODELS) {
-        notify(`Digite um número entre 1 e ${TOTAL_MODELS}.`);
+      const val = Math.round(Number(jumpInput.value));
+      if (!Number.isFinite(val) || !MODEL_INDEX.has(val)) {
+        notify("Modelo indisponível. Números: 1–40 e 51–193.");
         jumpInput.focus();
         return;
       }
