@@ -14,6 +14,14 @@
   <meta property="og:image" content="https://tillerconfeccoes.github.io/tillercatalogo2027/imagens/categoria-1/modelo-002.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHPX185Q6Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZHPX185Q6Q');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -1416,6 +1424,12 @@
       toastTimer = setTimeout(() => toast.classList.remove("show"), 2000);
     }
 
+    function trackEvent(name, params = {}) {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", name, params);
+      }
+    }
+
     function getPublicBase() {
       if (/^https:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1)$/i.test(location.hostname)) {
         const dir = location.pathname.replace(/\/[^/]*$/, "");
@@ -1438,6 +1452,12 @@
         "",
         "Podemos seguir com esse modelo!"
       ];
+
+      trackEvent("enviar_whatsapp", {
+        modelo: modelName(n),
+        colecao: cat ? cat.name : "-",
+        origem: "catalogo"
+      });
 
       const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(lines.join("\n"))}`;
       const win = window.open(waUrl, "_blank");
@@ -1469,6 +1489,12 @@
         const caption = `Oi! Escolhi o ${modelName(n)} (${cat.name}) no catálogo CarnaTiller 2027.`;
 
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          trackEvent("enviar_foto", {
+            modelo: modelName(n),
+            colecao: cat.name,
+            metodo: "compartilhar_app",
+            origem: "catalogo"
+          });
           await navigator.share({
             files: [file],
             title: `${modelName(n)} · CarnaTiller 2027`,
@@ -1478,6 +1504,12 @@
         }
 
         // Fallback para desktop ou navegadores sem compartilhamento de arquivo
+        trackEvent("enviar_foto", {
+          modelo: modelName(n),
+          colecao: cat.name,
+          metodo: "download",
+          origem: "catalogo"
+        });
         const blobUrl = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = blobUrl;
@@ -1826,11 +1858,13 @@
     }
 
     function toggleFavorite(n) {
+      const cat = categoryOf(n);
       if (favorites.has(n)) {
         favorites.delete(n);
         notify(`${modelName(n)} removido dos salvos.`);
       } else {
         favorites.add(n);
+        trackEvent("favoritar_modelo", { modelo: modelName(n), colecao: cat ? cat.name : "-", origem: "catalogo" });
         notify(`${modelName(n)} salvo nos favoritos.`);
       }
       saveFavorites();
@@ -1912,6 +1946,7 @@
       lightboxImg.alt = `${modelName(n)} · ${cat.name}`;
       lightboxTitle.textContent = modelName(n);
       lightboxCategory.textContent = `Coleção ${cat.name}`;
+      trackEvent("ampliar_modelo", { modelo: modelName(n), colecao: cat.name, origem: "catalogo" });
 
       lastFocusedBeforeModal = document.activeElement;
       lightbox.classList.add("open");
@@ -1968,7 +2003,9 @@
         if (selectedModel === num) {
           shareModelImage(num, selectBtn);
         } else {
+          const cat = categoryOf(num);
           selectModel(num);
+          trackEvent("escolher_modelo", { modelo: modelName(num), colecao: cat ? cat.name : "-", origem: "catalogo" });
           notify(`${modelName(num)} selecionado!`);
         }
         return;
@@ -1984,6 +2021,7 @@
       tab.addEventListener("click", () => {
         const cat = CATEGORIES.find(c => c.id === Number(tab.dataset.category));
         if (cat) {
+          trackEvent("ver_colecao", { colecao: cat.name, origem: "catalogo" });
           closeDrawers();
           goToModel(cat.start, true);
         }
